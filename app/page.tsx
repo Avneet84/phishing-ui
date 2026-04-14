@@ -12,7 +12,7 @@ export default function Home() {
     setLoading(true);
 
     try {
-     const res = await fetch("https://phishing-detector-h1yg.onrender.comcl/predict", {
+     const res = await fetch("https://phishing-detector-h1yg.onrender.com/predict", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
