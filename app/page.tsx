@@ -12,16 +12,16 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://phishing-detector-h1yg.onrender.com/run/predict", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ data: [url] }),
-      });
+     const res = await fetch("https://phishing-detector-h1yg.onrender.comcl/predict", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ url: url }),
+});
 
-      const data = await res.json();
-      setResult(data.data[0]);
+const data = await res.json();
+setResult(data.result);
     } catch (err) {
       setResult("❌ Error connecting to backend");
     }
