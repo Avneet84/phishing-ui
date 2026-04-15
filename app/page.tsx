@@ -12,7 +12,7 @@ export default function Home() {
     setLoading(true);
 
     try {
-  const res = await fetch("https://phishing-detector-h1yg.onrender.com/predict", {
+ const res = await fetch("https://phishing-detector-production-29f9.up.railway.app/predict", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -22,8 +22,6 @@ export default function Home() {
 
 const data = await res.json();
 setResult(data.result);
-    } catch (err) {
-      setResult("❌ Error connecting to backend");
     }
 
     setLoading(false);
