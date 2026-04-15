@@ -12,20 +12,34 @@ export default function Home() {
     setLoading(true);
 
     try {
- const res = await fetch("https://phishing-detector-production-29f9.up.railway.app/predict", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({ url: url }),
-});
+const handleScan = async () => {
+  setLoading(true);
+  setResult("");
 
-const data = await res.json();
-setResult(data.result);
+  try {
+    const res = await fetch("https://phishing-detector-production-29f9.up.railway.app/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ url: url }),
+    });
+
+    // 👇 IMPORTANT CHECK
+    if (!res.ok) {
+      throw new Error("Server error");
     }
 
-    setLoading(false);
-  };
+    const data = await res.json();
+    setResult(data.result);
+
+  } catch (err) {
+    console.error(err);
+    setResult("❌ Error connecting to backend");
+  }
+
+  setLoading(false);
+};
 
   return (
     <div style={{
